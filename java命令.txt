@@ -1,0 +1,4 @@
+1、javac 编译Java源文件
+2、java  运行Java程序
+3、javadoc  提取Java源文件中的注释来生成API文档
+	javadoc -d apidoc -windowtitle 测试 -doctitle 学习javadoc工具的测试API文档 -header 我的类 *Test.java

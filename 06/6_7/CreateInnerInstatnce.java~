@@ -1,0 +1,15 @@
+public class CreateInnerInstatnce
+{
+	class Inner
+	{
+		private void print() {
+			System.out.println("yes");
+		}
+	}
+
+	public static void main(String[] args) {
+		CreateInnerInstance outInstance = CreateInnerInstance();
+		outInstance.Inner innerInstance = outInstance.new Inner();
+		innerInstance.print();
+	}
+}

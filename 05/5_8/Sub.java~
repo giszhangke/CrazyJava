@@ -1,0 +1,23 @@
+import static java.lang.System.*;
+
+class Base
+{
+	public Base() {
+		test();
+	}
+
+	public void test() {
+		out.println("base test");
+	}
+}
+
+public class Sub extends Base
+{
+	public void test() {
+		out.println("sub test");
+	}
+
+	public static void main(String[] args) {
+		Sub s = new Sub();
+	}
+}

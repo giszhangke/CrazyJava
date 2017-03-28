@@ -1,0 +1,28 @@
+public class WrapperClassCompare
+{
+	// 下面的语句在方法外，编译时会报错，提示需要标识
+	// System.out.println("a > 3 ? " + (a > 3.0));
+	public static void main(String[] args) throws Exception {
+
+	Integer a = new Integer(4);
+	System.out.println("a > 3 ? " + (a > 3.0));
+	System.out.println(new Integer(2) == new Integer(2));
+
+	Integer i = 127;
+	Integer j = 127;
+	System.out.println("i = j ? " + (i == j));
+	Integer m = 128;
+	Integer n = 128;
+	System.out.println("m = m ? " + (m == n));
+
+	System.out.println(Boolean.compare(true, false));
+	System.out.println(Boolean.compare(true, true));	
+	System.out.println(Boolean.compare(false, true));
+
+	System.out.println(Integer.compare(8, 3));
+	System.out.println(Integer.compare(3, 3));	
+	System.out.println(Integer.compare(3, 8));
+
+	
+	}
+}

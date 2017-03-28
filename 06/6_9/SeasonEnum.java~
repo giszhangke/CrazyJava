@@ -1,0 +1,8 @@
+public enum SeasonEnum
+{
+	//所有枚举值要在一行列出
+	SPRING, 
+	SUMMARY, 
+	FALL, 
+	WINTER;
+}

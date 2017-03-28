@@ -1,0 +1,26 @@
+abstract class Device
+{
+	private String name = "";
+	private double price;
+
+	public Device(){}
+
+	public Device(String name) {
+		this.name = name;
+		System.out.println("Name: " + name + ", Price: " + getPrice());
+	}
+
+	abstract public double getPrice();
+}
+
+public class AnonymousInner
+{
+	public static void main(String[] args) {
+		final int useYear = 10;
+		Device device = new Device("car"){
+			public double getPrice() {
+				return 3888.8 * useYear;
+			}
+		};
+	}
+}

@@ -1,0 +1,16 @@
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class FindGroup
+{
+	public static void main(String[] args) {
+		String str = "我是科长，我的联系方式是13500001111"
+			+ "部长的联系方式是13688829993"
+			+ "会长的联系方式是13788829993";
+		Matcher m = Pattern.complie("(13[5-7])\\d{8}").matcher(str);
+
+		while (m.find()) {
+			System.out.println(m.group());
+		}
+	}
+}

@@ -1,0 +1,83 @@
+import java.util.TreeSet;
+
+class R2 implements Comparable
+{
+	int count;
+
+	public R2 (int count) {
+		this.count = count;
+	}
+
+	@Override
+	public String toString() {
+		return count + "";
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		} else if (obj != null && obj.getClass() == R2.class) {
+			R2 r = (R2)obj;
+			return r.count == count;
+		}
+		return false;
+	}
+
+	@Override
+	public int compareTo(Object obj) {
+		R2 r = (R2)obj;
+		return this.count > r.count ? 1 : 
+			this.count < r.count ? -1 : 0;
+	}
+}
+
+class M
+{
+	int age;
+
+	public M(int age) {
+		this.age = age;
+	}
+
+	@Override
+	public String toString() {
+		return age + "";
+	}
+}
+	
+public class TreeSetTest3
+{
+	public static void main(String[] args) {
+		TreeSet treeSet = new TreeSet();
+		treeSet.add(new R2(5));
+		treeSet.add(new R2(-3));
+		treeSet.add(new R2(9));
+		treeSet.add(new R2(-2));
+		System.out.println(treeSet);
+		R2 first = (R2)treeSet.first();
+		System.out.println(first);
+		first.count = 20;
+		R2 last = (R2)treeSet.last();
+		System.out.println(last);
+		last.count = -2;
+		System.out.println(treeSet);
+		System.out.println(treeSet.remove(new R2(-2)));
+		System.out.println(treeSet);
+		System.out.println(treeSet.remove(new R2(5)));
+		System.out.println(treeSet);
+
+		treeSet = new TreeSet((obj1, obj2) -> {
+			M m1 = (M)obj1;
+			M m2 = (M)obj2;
+			return m1.age > m2.age ? 1 :
+				m1.age < m2.age ? -1 : 0;
+		});
+
+		treeSet.add(new M(3));
+		treeSet.add(new M(3));
+		treeSet.add(new M(9));
+		System.out.println(treeSet);
+	}
+}
+

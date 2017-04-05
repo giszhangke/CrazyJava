@@ -1,0 +1,16 @@
+import java.util.ArrayDeque;
+
+public class ArrayDequeQueue {
+	public static void main(String[] args) {
+		ArrayDeque arrayDequeQueue = new ArrayDeque();
+		arrayDequeQueue.offer("大圣");
+		arrayDequeQueue.offer("长老");
+		arrayDequeQueue.offer("呆子");
+		arrayDequeQueue.offer("沙师弟");
+		System.out.println(arrayDequeQueue);
+		System.out.println(arrayDequeQueue.peek());
+		System.out.println(arrayDequeQueue);
+		System.out.println(arrayDequeQueue.poll());
+		System.out.println(arrayDequeQueue);
+	}
+}

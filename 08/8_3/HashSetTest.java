@@ -1,0 +1,46 @@
+import java.util.Collection;
+import java.util.HashSet;
+
+class A
+{
+	@Override
+	public boolean equals(Object obj) {
+		return true;
+	}
+}
+
+class B 
+{
+	@Override
+	public int hashCode() {
+		return 1;
+	}
+}
+
+class C
+{
+	@Override
+	public boolean equals(Object obj) {
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		return 2;//把这里改成return 1; 试试，会有惊喜
+	}
+}
+
+public class HashSetTest
+{
+	public static void main(String[] args) {
+		HashSet hashSet = new HashSet();
+		hashSet.add(new A());
+		hashSet.add(new A());
+		hashSet.add(new B());
+		hashSet.add(new B());
+		hashSet.add(new C());
+		hashSet.add(new C());
+
+		System.out.println(hashSet);		
+	}
+}

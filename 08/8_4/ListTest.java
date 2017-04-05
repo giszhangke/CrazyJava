@@ -1,0 +1,76 @@
+import java.util.List;
+import java.util.ArrayList;
+import java.util.ListIterator;
+import java.util.Arrays;
+
+class A {
+	@Override
+	public boolean equals(Object obj) {
+		return true;
+	}
+}
+
+public class ListTest {
+	public static void main(String[] args) {
+		List list = new ArrayList();
+		list.add(new String("孙悟空"));
+		list.add(new String("猪八戒"));		
+		list.add(new String("唐僧"));
+		list.add(new String("沙僧"));
+		System.out.println(list);
+		list.add(2, new String("白龙马"));
+		System.out.println(list);
+		list.remove(new String("孙悟空"));
+		System.out.println(list);
+		System.out.println(list.indexOf(new String("唐僧")));
+		list.set(list.indexOf(new String("唐僧")), new String("牛魔王"));
+		System.out.println(list);
+		System.out.println(list.subList(1,3));//index [1, 3)
+
+		System.out.println("");	
+		System.out.println(list);
+		list.remove(new A());// new A().equals() 返回true, 删除成功
+		System.out.println(list);
+		list.remove(new A());// new A().equals() 返回true, 删除成功
+		System.out.println(list);
+
+		// sort()  replaceAll()
+		System.out.println("");
+		list = new ArrayList();
+		list.add(new String("孙悟空"));
+		list.add(new String("八戒"));		
+		list.add(new String("大唐圣僧"));
+		list.add(new String("沙僧"));
+		System.out.println(list);
+		list.sort((ea, eb) -> ((String)ea).length() - ((String)eb).length());//升序: 小->大
+		System.out.println(list);
+		list.replaceAll(ele -> "使者" + (String)ele);
+		System.out.println(list);
+
+		// ListIterator
+		System.out.println("");
+		System.out.println("ListIterator:");
+		List arrayList = list;
+		ListIterator listIterator = arrayList.listIterator();
+		while (listIterator.hasNext()) {
+			listIterator.add("-------------");// 把行代码放到 // 11 处试试
+			System.out.println(listIterator.next());
+			// 11
+		}
+		System.out.println("================");
+		while (listIterator.hasPrevious()) {
+			System.out.println(listIterator.previous());
+		}
+
+		// Arrays.ArrayList
+		System.out.println("");
+		System.out.println("Arrays.ArrayList");
+		List fixedList = Arrays.asList("齐天大圣", "天蓬元帅", "玉皇大帝" ,"太上老君");
+		System.out.println(fixedList.getClass());
+		System.out.println(fixedList);
+		// Arrays.ArrayList是不可变类，不能修改，下面两行代码报错
+		//fixedList.remove(new String("天蓬元帅"));
+		//fixedList.add(new String("红孙儿"));
+
+	}
+}

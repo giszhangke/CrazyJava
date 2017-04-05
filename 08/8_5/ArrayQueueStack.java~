@@ -1,0 +1,16 @@
+import java.util.ArrayDque;
+
+public class ArrayDqueStack
+{
+	public static void main(String[] args) {
+		ArrayDque arrayQueueStack = new ArrayDque();
+		arrayDqueStack.push("大圣");
+		arrayDqueStack.push("长老");
+		arrayDqueStack.push("呆子");
+		arrayDqueStack.push("沙师弟");
+		System.out.println(arrayQueueStack);
+		System.out.println(arrayQueueStack.peek());
+		System.out.println(arrayQueueStack.pop());
+		System.out.println(arrayQueueStack);
+	}
+}

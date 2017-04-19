@@ -1,18 +1,44 @@
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 
 public class ListErr {
 	public static void main(String[] args) {
 		// 如果这里的list变量声明改为 List list
-		// 则后面的line 15/16会报错
-		List<String> list = new ArrayList<String>();
+		// 则后面的tag 15/16会报错
+		List<String> list = new ArrayList<String>();// tag 8
 
 		list.add("大圣");
 		list.add("太上老君");
 		list.add("月老");
 		//list.add(5);//这行代码会报错
 		list.forEach(System.out::println);
-		list.forEach(ele -> System.out.println(ele.length()));// line 15
-		list.forEach(ele -> System.out.println((String)ele));// line 16
+		list.forEach(ele -> System.out.println(ele.length()));// tag 15
+		list.forEach(ele -> System.out.println((String)ele));// tag 16
+
+		List<String> list2 = new ArrayList<>();//Java7菱形语法，可以这样声明，功能和tag 8是一样的
+		list2.add("山猫");
+		list2.add("火箭");		
+		list2.add("湖人");
+		list2.forEach(System.out::println);		
+
+		//Java类型推断
+		List<String> list3 = new ArrayList();
+		list3.add("风");
+		list3.add("火");
+		list3.add("雷");
+		// 遍历list3， ele类型就是String类型
+		list3.forEach(ele -> System.out.println(ele + ": " + ele.length()));
+		/* 
+		Map<String, List<String>> countryCities = new HashMap<>();
+		List<String> cities = new ArrayList<>();
+		*/
+		Map<String, List<String>> countryCities = new HashMap();
+		List<String> cities = new ArrayList();
+		cities.add("上海");
+		cities.add("北京");		
+		countryCities.put("中国", cities);
+		countryCities.forEach((country, cityList) -> System.out.println(country + ": " + cityList));
 	}	
 }

@@ -1,0 +1,16 @@
+class MyClass<E> {
+	public <T> MyClass(T t) {
+		System.out.println("t: " + t);
+	}
+}
+
+public class GenericDiamondTest {
+	public static void main(String[] args) {
+		MyClass<String> mc1 = new MyClass(5);
+		MyClass<Integer> mc2 = new <String> MyClass<Integer>("I'm zk");
+		MyClass<Integer> mc3 = new <String> MyClass("Wow");
+		MyClass<Integer> mc4 = new MyClass<>("FASD");
+		// 下一行代码报错
+		 MyClass<Integer> mc5 = new <String> MyClass<>("Wow");		
+	}
+}

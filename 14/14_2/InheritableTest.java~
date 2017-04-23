@@ -1,0 +1,4 @@
+
+@Inheritable
+class base {
+}

@@ -1,0 +1,29 @@
+import java.nio.Buffer;
+import java.nio.CharBuffer;
+
+public class BufferTest {
+	public static void main(String[] args) {
+		CharBuffer buff = CharBuffer.allocate(8);
+		System.out.println("初始容量：" + buff.capacity());
+		System.out.println("初始limit：" + buff.limit());
+		System.out.println("初始position：" + buff.position());
+		buff.put('a');
+		buff.put('b');
+		buff.put('c');
+		System.out.println("插入数据后的position：" + buff.position());
+		buff.flip();
+		System.out.println("flip后的limit：" + buff.limit());
+		System.out.println("flip后的position：" + buff.position());
+		System.out.println("第一个元素：" + buff.get());
+		System.out.println("取出第一个元素后的position: " + buff.position());
+		System.out.println("第二个元素：" + buff.get());
+		System.out.println("取出第二个元素后的position: " + buff.position());
+		// 下一行代码报错， IndexOutOfBoundsException
+		// System.out.println("尝试取第四个元素：" + buff.get(3));
+		buff.clear();
+		System.out.println("clear后的limit：" + buff.limit());
+		System.out.println("clear后的position：" + buff.position());
+		System.out.println("取出第3个元素: " + buff.get(2));
+		System.out.println("取出第3个元素后的position: " + buff.position());
+	}
+}

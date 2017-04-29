@@ -1,0 +1,48 @@
+import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.attribute.BasicFileAttributeView;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.file.attribute.FileOwnerAttributeView;
+import java.nio.file.attribute.UserDefinedFileAttributeView;
+import java.nio.file.attribute.DosFileAttributeView;
+import java.nio.file.attribute.UserPrincipal;
+import java.util.Date;
+import java.util.List;
+
+public class AttributeViewTest {
+	public static void main(String[] args) throws Exception {
+		Path testPath = Paths.get("AttributeViewTest.java");
+		
+		BasicFileAttributeView basicAttributeView = Files.getFileAttributeView(testPath, BasicFileAttributeView.class);
+		BasicFileAttributes basicAttributes = basicAttributeView.readAttributes();
+		System.out.println("文件创建时间：" + new Date(basicAttributes.creationTime().toMillis()));
+		System.out.println("文件最后一次访问时间：" + new Date(basicAttributes.lastAccessTime().toMillis()));
+		System.out.println("文件最后一次修改时间：" + new Date(basicAttributes.lastModifiedTime().toMillis()));
+		System.out.println("文件大小：" + basicAttributes.size());
+		
+		FileOwnerAttributeView ownerAttributeView = Files.getFileAttributeView(testPath, FileOwnerAttributeView.class);
+		System.out.println(ownerAttributeView.getOwner());
+		UserPrincipal user = FileSystems.getDefault().getUserPrincipalLookupService().lookupPrincipalByName("guest");
+		ownerAttributeView.setOwner(user);
+		System.out.println(ownerAttributeView.getOwner());
+
+		UserDefinedFileAttributeView userDefinedView = Files.getFileAttributeView(testPath, UserDefinedFileAttributeView.class);
+		List<String> attrNames = userDefinedView.list();
+		for (String name : attrNames) {
+			ByteBuffer buffer = ByteBuffer.allocate(userDefinedView.size(name));
+			userDefinedView.read(name, buffer);
+			buffer.flip();
+			String value = Charset.defaultCharset().decode(buffer).toString();
+			System.out.println(name + " ----> " + value);
+		}
+		userDefinedView.write("发行者", Charset.defaultCharset().encode("科长"));			
+
+		DosFileAtttributeView dosView = Files.getFileAttributeView(testPath, DosFileAttributeView.class);
+		dosView.setHidden(true);
+		dosView.setReadOnly(true);
+	}
+}

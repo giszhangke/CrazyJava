@@ -1,0 +1,35 @@
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+
+public class InsertContent {
+	public static void insert(String fileName, long pos, String insertContent) throws IOException {
+		File tmp = File.createTempFile("tmp", null);
+		tmp.deleteOnExit();
+		try (RandomAccessFile raf = new RandomAccessFile("out.txt", "rw");
+		     FileInputStream fis = new FileInputStream(tmp);
+		     FileOutputStream fos = new FileOutputStream(tmp);) {
+			raf.seek(pos);
+			// 将从pos开始的文件内容讲到临时文件
+			byte[] bbuf = new byte[1024];
+			int hasRead = 0;
+			while ((hasRead = raf.read(bbuf)) > 0) {
+				fos.write(bbuf, 0, hasRead);
+			}
+			raf.seek(pos);
+			raf.write(insertContent.getBytes());
+
+			while ((hasRead = fis.read(bbuf)) > 0) {
+				raf.write(bbuf, 0, hasRead);
+			}
+
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
+	}
+
+	public static void main(String[] args) throws IOException {
+		insert("out.txt", 45, "插入内容2222!\n");
+	}
+}

@@ -1,0 +1,14 @@
+import java.io.FileOutputStream;
+import java.nio.channels.FileChannel;
+import java.nio.channels.FileLock;
+public class FileLockTest {
+	public static void main(String[] args) {
+		try (FileChannel fc = new FileOutputStream("a.txt").getChannel()) {
+			FileLock lock = fc.lock();
+			Thread.sleep(10000);
+			lock.release();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+}

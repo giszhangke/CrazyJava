@@ -15,6 +15,6 @@ public class InetAddressTest {
 		String encodedString = "Java%E5%BC%A0%E4%B8%8D%E6%B5%AA";
 		System.out.println(URLDecoder.decode(encodedString, "UTF-8"));
 		String toBeEncodedString = "Java张不浪";
-		System.out.println(URLEncoder.encode(toBeEncodedString, "UTF-8"));
+		System.out.println(URLEncoder.encode(toBeEncodedString));
 	}
 }

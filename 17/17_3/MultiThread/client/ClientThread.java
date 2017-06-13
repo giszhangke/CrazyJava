@@ -1,0 +1,26 @@
+import java.net.Socket;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+
+public class ClientThread implements Runnable {
+	private Socket socket = null;
+	private BufferedReader br = null;
+
+	public ClientThread(Socket socket) throws IOException {
+		this.socket = socket;
+		br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+	}
+
+	@Override
+	public void run() {
+		String line = null;
+		try {
+			while ((line = br.readLine()) != null) {
+				System.out.println(line);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+}

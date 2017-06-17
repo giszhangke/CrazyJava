@@ -1,0 +1,5 @@
+public class ArrayTest2 {
+	public static void main(String[] args) throws Exception {
+		Object arr = Array.newInstance(String.class, 3, 4, 10);
+	}
+}

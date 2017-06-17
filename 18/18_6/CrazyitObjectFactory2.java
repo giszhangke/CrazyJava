@@ -1,0 +1,17 @@
+import javax.swing.JFrame;
+import java.util.Date;
+
+public class CrazyitObjectFactory2 {
+	public static <T> T getInstance(Class<T> clazz) {
+		try {
+			return clazz.newInstance();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	public static void main(String[] args) throws Exception {
+		Date date = getInstance(Date.class);
+		JFrame jFrame = getInstance(JFrame.class);
+	}
+}

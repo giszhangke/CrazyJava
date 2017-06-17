@@ -1,0 +1,8 @@
+public class GunDog implements Dog {
+	public void info() {
+		System.out.println("我是一个猎狗");	
+	}
+	public void run() {
+		System.out.println("我奔跑迅速");
+	}
+}
